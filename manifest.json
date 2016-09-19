@@ -1,0 +1,24 @@
+{
+  "name": "Leek Wars",
+  "start_url": "/notifs/",
+  "display": "standalone",
+  "permissions": [
+	  "gcm", "notifications"
+  ],
+  "icons": [{
+    "src": "images/favicon_256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  },
+  {
+    "src": "images/favicon_128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  },
+  {
+    "src": "images/favicon_64.png",
+    "sizes": "64x64",
+    "type": "image/png"
+  }],
+  "gcm_sender_id": "20234258299"
+}
