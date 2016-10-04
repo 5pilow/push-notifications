@@ -4,57 +4,24 @@ Web Push notifications example
 
 ## Generate VAPID keys
 
-Run the file `generate_vapid_keys.js` with node:
+Run the file [`generate_vapid_keys.js`](https://github.com/5pilow/push-notifications/blob/master/generate_vapid_keys.js) with node, it will generate your two VAPID keys and some useful conversions for you.
 
-```javascript
-const webpush = require('web-push')
-const atob = require('atob')
-const asn1 = require('asn1.js')
-const urlBase64 = require('urlsafe-base64')
+You will get something like:
 
-const vapidKeys = webpush.generateVAPIDKeys()
-console.log("Private VAPID key:")
-console.log(vapidKeys.privateKey)
-console.log("\nPublic VAPID key:")
-console.log(vapidKeys.publicKey)
 
-console.log("\nPublic key as a Uint8Array, to put int the subscribe() method:")
-printUint8Array(urlBase64ToUint8Array(vapidKeys.publicKey))
+**Private VAPID key:**
+L-gxfGFLDm_PIB3KA5rFpi8sQAVMJCpmVqEpZdLsM3A
 
-console.log("\nPrivate key as a PEM key:")
-console.log(toPEMKey(vapidKeys.privateKey))
+**Public VAPID key:**
+BKQ7d895lHvLbZ56aaQzvXNwxvOWooDHnaqpLAHU4ymKNVppxCMCsC0j9BUDwabRHFPGg4UVMcj0OqIhaupNW1I
 
-function urlBase64ToUint8Array(base64String) {
-	const padding = '='.repeat((4 - base64String.length % 4) % 4)
-	const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/')
-	const rawData = atob(base64)
-	const outputArray = new Uint8Array(rawData.length)
-	for (var i = 0; i < rawData.length; ++i) {
-		outputArray[i] = rawData.charCodeAt(i)
-	}
-	return outputArray
-}
+**Public key as a Uint8Array, to put int the subscribe() method:**
+new Uint8Array([4,164,59,119,207,121,148,123,203,109,158,122,105,164,51,189,115,112,198,243,150,162,128,199,157,170,169,44,1,212,227,41,138,53,90,105,196,35,2,176,45,35,244,21,3,193,166,209,28,83,198,131,133,21,49,200,244,58,162,33,106,234,77,91,82])
 
-function printUint8Array(array) {
-	console.log("new Uint8Array([" + array + "])")
-}
+**Private key as a PEM key:**
 
-function toPEMKey(key) {
-	key = urlBase64.decode(key)
-	const ECPrivateKeyASN = asn1.define('ECPrivateKey', function() {
-		this.seq().obj(
-		this.key('version').int(),
-		this.key('privateKey').octstr(),
-		this.key('parameters').explicit(0).objid().optional(),
-		this.key('publicKey').explicit(1).bitstr().optional())
-	})
-	return ECPrivateKeyASN.encode({
-		version: 1,
-		privateKey: key,
-		parameters: [1, 2, 840, 10045, 3, 1, 7] // prime256v1
-	}, 'pem', {
-		label: 'EC PRIVATE KEY'
-	})
-}
-
+-----BEGIN EC PRIVATE KEY-----
+MDECAQEEIC/oMXxhSw5vzyAdygOaxaYvLEAFTCQqZlahKWXS7DNwoAoGCCqGSM49
+AwEH
+-----END EC PRIVATE KEY-----
 ```
