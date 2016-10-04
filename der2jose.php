@@ -108,6 +108,6 @@ private function DER2Jose($signature, $keySize) {
 		   . $to_copy
 		   . substr($dst, $offset + strlen($to_copy));
 
-	$dst = rtrim(strtr(base64_encode(dst), '+/', '-_'), '=');
+	$dst = rtrim(strtr(base64_encode($dst), '+/', '-_'), '=');
 	return $dst;
 }
