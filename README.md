@@ -5,9 +5,7 @@ Web Push notifications example
 ## Generate VAPID keys
 
 Run the file [`generate_vapid_keys.js`](https://github.com/5pilow/push-notifications/blob/master/generate_vapid_keys.js) with node, it will generate your two VAPID keys and some useful conversions for you.
-
 You will get something like:
-
 
 **Private VAPID key:**
 L-gxfGFLDm_PIB3KA5rFpi8sQAVMJCpmVqEpZdLsM3A
