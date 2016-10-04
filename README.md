@@ -1,6 +1,6 @@
 # push-notifications
 
-Web Push notifications example
+Web Push notifications example, this is not a library, but just a sample app with push notifications, and useful functions :)
 
 ## Generate VAPID keys
 
