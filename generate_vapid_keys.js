@@ -1,12 +1,3 @@
-# push-notifications
-
-Web Push notifications example
-
-## Generate VAPID keys
-
-Run the file `generate_vapid_keys.js` with node:
-
-```javascript
 const webpush = require('web-push')
 const atob = require('atob')
 const asn1 = require('asn1.js')
@@ -56,5 +47,3 @@ function toPEMKey(key) {
 		label: 'EC PRIVATE KEY'
 	})
 }
-
-```
